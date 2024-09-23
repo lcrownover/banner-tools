@@ -23,8 +23,9 @@ type DuckIDResponse struct {
 
 func BannerIDToDuckID(ctx context.Context, bannerID string) (string, error) {
 	apiKey := ctx.Value(keys.ApiKeyKey).(string)
+	apiURL := ctx.Value(keys.ApiURL).(string)
 
-	url := fmt.Sprintf("https://api.uoregon.edu/person/uo/duckid/%s", bannerID)
+	url := fmt.Sprintf("https://%s/person/uo/duckid/%s", apiURL, bannerID)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

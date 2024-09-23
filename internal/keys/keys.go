@@ -4,4 +4,5 @@ type key int
 
 const (
 	ApiKeyKey key = iota
+	ApiURL
 )

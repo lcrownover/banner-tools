@@ -18,7 +18,13 @@ func main() {
 		fmt.Println("BANNER_TOOLS_API_KEY environment variable not set")
 		os.Exit(1)
 	}
+	apiURL, exists := os.LookupEnv("BANNER_TOOLS_API_URL")
+	if !exists {
+		fmt.Println("BANNER_TOOLS_API_URL environment variable not set ('api.example.edu')")
+		os.Exit(1)
+	}
 	ctx := context.WithValue(context.Background(), keys.ApiKeyKey, apiKey)
+	ctx = context.WithValue(context.Background(), keys.ApiURL, apiURL)
 
 	// Root command
 	var rootCmd = &cobra.Command{
